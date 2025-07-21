@@ -1,13 +1,15 @@
 import { Button, Row, Col, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import { auth, db } from "../../firebase";
+import { auth, db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { Link, useNavigate } from "react-router";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const auth = getAuth();
+  const navigate = useNavigate();
   const register = async () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -26,6 +28,10 @@ function Register() {
     } catch (error) {
       console.error("Registration Error: ", error.code, error.message);
     }
+  };
+
+  const navigateToLogin = () => {
+    navigate("/login");
   };
 
   useEffect(() => {});
@@ -63,6 +69,9 @@ function Register() {
             </div>
             <div className="text-center">
               <Button onClick={register}>Submit</Button>
+            </div>
+            <div className="text-center">
+              <Button onClick={navigateToLogin}>Login</Button>
             </div>
           </Col>
         </Row>
