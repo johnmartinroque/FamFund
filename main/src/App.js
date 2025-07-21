@@ -1,11 +1,10 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { Button, Row, Col } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import React from "react";
+import Register from "./components/authentication/Register";
+
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
+    <div>
+      <Register />
     </div>
   );
 }
