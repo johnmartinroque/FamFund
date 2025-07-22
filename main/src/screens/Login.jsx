@@ -22,6 +22,8 @@ function Login() {
       const user = userCredential.user;
       setEmail("");
       setPassword("");
+      localStorage.setItem("userName", user.displayName);
+      localStorage.setItem("userEmail", user.email);
     } catch (error) {
       console.error("Registration Error: ", error.code, error.message);
     }
