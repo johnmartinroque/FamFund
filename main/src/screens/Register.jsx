@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router";
 function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const auth = getAuth();
   const navigate = useNavigate();
   const register = async () => {
@@ -21,8 +22,9 @@ function Register() {
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         email: user.email,
+        username: username,
       });
-
+      setUsername("");
       setEmail("");
       setPassword("");
     } catch (error) {
@@ -53,6 +55,19 @@ function Register() {
                 placeholder="name@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">
+                Username
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="exampleFormControlInput1"
+                placeholder="name@example.com"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div class="mb-3">
